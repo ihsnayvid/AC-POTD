@@ -1,0 +1,19 @@
+//Leetcode ques link:
+//https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
+
+int countGoodSubstrings(string s) {
+    int n=s.length();
+    string w="";
+    int count=0;
+    for(int i=0;i<3;i++)
+        w+=s[i];
+    if(w[0]!=w[1] && w[1]!=w[2] && w[0]!=w[2])
+        count++;
+    for(int i=3;i<n;i++){
+        w+=s[i];
+        w.erase(w.begin()+0);
+        if(w[0]!=w[1] && w[1]!=w[2] && w[0]!=w[2])
+            count++;
+    }
+    return count;
+}
