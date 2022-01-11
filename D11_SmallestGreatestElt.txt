@@ -1,0 +1,23 @@
+//Leetcode Ques Link:
+//https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+
+
+//Binary Search O(logN)
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        int n=letters.size();
+        if(target >= letters[n-1]) return letters[0];
+        int l=0,u=n-1;
+        int mid,ans=n;
+        while(l<=u){
+            mid=(l+u)>>1;
+            if(target<letters[mid]){
+                ans=min(ans,mid);
+                u=mid-1;
+            }
+            else l=mid+1;
+        }
+        return letters[ans];
+    }
+};
