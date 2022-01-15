@@ -1,5 +1,6 @@
 #include<bits/stdc++.h> 
 using namespace std; 
+//sort then two pointers
 bool findPair(int arr[], int size, int n){
     int i=0,j=1;
     sort(arr,arr+size);
@@ -10,6 +11,20 @@ bool findPair(int arr[], int size, int n){
     }
     return false;
 }
+
+/*
+//using unordered maps
+bool findPair(int arr[], int size, int n){
+    unordered_map<int,int> mp;
+    for(int i=0;i<size;i++){
+        if(mp[arr[i]+n]>0 || mp[arr[i]-n]>0) return true;
+        mp[arr[i]]++;
+    }
+    return false;
+}
+*/
+
+
 int main()
 {
     int t;
