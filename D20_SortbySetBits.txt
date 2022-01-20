@@ -1,0 +1,22 @@
+//Leetcode Ques Link: https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+
+int numSetBits(int n){
+    int count=0;
+    while(n!=0){
+        if(n & 1 == 1) count++;
+        n>>=1;
+    }
+    return count;
+}
+vector<int> sortByBits(vector<int>& arr) {
+    int n=arr.size();
+    vector<pair<int,int>> v;
+    for(int i=0;i<n;i++)
+            v.push_back(make_pair(numSetBits(arr[i]),arr[i]));
+    sort(v.begin(),v.end());
+    arr.clear();
+    for(auto i: v){
+        arr.push_back(i.second);
+    }
+    return arr;
+}
