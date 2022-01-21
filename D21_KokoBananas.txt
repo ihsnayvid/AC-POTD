@@ -1,0 +1,27 @@
+//Leetcode Ques Link: https://leetcode.com/problems/koko-eating-bananas/
+
+class Solution {
+public:
+    
+    int solve(int mid,vector<int>& piles){
+        int temp=0;   //how many hours will be required for this mid(k)
+        
+        for(auto i:piles)
+            temp+=ceil((i*1.0)/mid); //turning 3.5 to 4 etc
+        return temp;
+    }
+    
+    int minEatingSpeed(vector<int>& piles, int h) {       
+        //int ans=0;
+        int l=1,u=1000000000,mid=0;
+        while(l<=u){
+            mid= l+ (u-l)/2;
+            if(solve(mid,piles) > h){
+                //ans=mid;
+                l=mid+1;
+            }
+            else u=mid-1;
+        }
+        return l;
+    }
+};
