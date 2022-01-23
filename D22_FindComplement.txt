@@ -1,5 +1,13 @@
 //Leetcode Ques Link: https://leetcode.com/problems/complement-of-base-10-integer/
 
+//Approach 0
+int bitwiseComplement(int n) {
+    if(n==0) return 1;
+    long int numbit= floor(log2(n)+1);
+    long long int ans=pow(2,numbit)-1 - n;
+    return ans;
+}
+
 //Approach 1
 int bitwiseComplement(int n) {
     //base case
