@@ -1,0 +1,25 @@
+//Leetcode Ques Link: https://leetcode.com/problems/length-of-last-word/
+
+int lengthOfLastWord(string s) {
+    int count=0,l=s.length();
+    bool letters=false;
+    for(int i=l-1;i>=0;i--){
+        if(s[i] != ' '){
+            letters=true;
+            count++;
+        }
+        else if(letters) break;            
+    }
+    return count;
+}
+
+
+//Reduced
+int lengthOfLastWord(string s){
+    int count=0,l=s.length();       
+    for(int i=l-1;i>=0;i--){
+        if(s[i] != ' ') count++;
+        else if(count>0) break;            
+    }
+    return count;
+}
