@@ -1,0 +1,17 @@
+//Leetcode Ques Link:https://leetcode.com/problems/long-pressed-name/
+
+bool isLongPressedName(string name, string typed) {
+    int i=0,j=0;
+    char temp;
+    while(j<typed.length()){
+        if(name[i] == typed[j]){
+            temp=name[i];
+            i++ ;                
+        }
+        else if(typed[j] != temp)           
+            return false;            
+        j++;
+    }
+    if(i < name.length()) return false;
+    return true;
+}
