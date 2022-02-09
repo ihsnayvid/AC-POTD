@@ -1,0 +1,21 @@
+Leetcode Ques Link: https://leetcode.com/problems/isomorphic-strings/
+
+bool isIsomorphic(string s, string t) {
+    unordered_map<char,char> mp;
+    unordered_map<char,bool> tmapped;
+    for(int i=0;i<s.length();i++){
+        auto ss=mp.find(s[i]);
+        auto tt=tmapped.find(t[i]);
+        
+        //if s[i] found for first time
+        if(ss == mp.end()){
+            if(tt != tmapped.end()) return false; //char already mapped
+            else {
+                mp[s[i]] =t[i];         //map the char
+                tmapped[t[i]] = true;   //mark t[i] as mapped
+            }
+        }
+        else if(mp[s[i]] != t[i]) return false;            
+    }
+    return true;
+}
