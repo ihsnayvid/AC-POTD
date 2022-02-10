@@ -1,0 +1,20 @@
+int transfigure (string A, string B)
+{
+    if(A == B) return 0;
+    if(A.length() != B.length()) return -1;
+    int c=0,i=A.length(),j=B.length()-1;
+    
+    int sumAscii=0;
+    while(i--){
+        sumAscii+=A[i];
+        sumAscii-=B[i];
+    }
+    if(sumAscii != 0) return -1; //to check whether A,B contain same characters
+    
+    i=A.length()-1;
+    while(i>=0 && j>=0){
+        if(A[i] == B[j]) i-- ,j--;
+        else i-- , c++;
+    }
+    return c;
+}
