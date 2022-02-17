@@ -1,0 +1,17 @@
+Leetcode Ques Link: https://leetcode.com/problems/swap-nodes-in-pairs/
+
+ListNode* swapPairs(ListNode* head) {
+    if(!head or !head->next) return head;
+    ListNode* dummy=new ListNode();
+    ListNode* curr=head;
+    ListNode* prev=dummy;       
+    
+    while(curr and curr->next){
+        prev->next=curr->next;
+        curr->next=prev->next->next;
+        prev->next->next=curr;
+        prev=curr;
+        curr=curr->next;            
+    }    
+    return dummy->next;
+}
