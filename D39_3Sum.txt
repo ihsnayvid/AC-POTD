@@ -1,0 +1,22 @@
+Leetcode Ques Link: https://leetcode.com/problems/3sum/
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+    int n=nums.size();        
+    if(n<3) return {};     
+    vector<vector<int>> ans;
+    unordered_map<int,int> mp;
+    sort(nums.begin(),nums.end());
+    //stored lastindex of elt
+    for(int i=0;i<n;i++) mp[nums[i]]=i;       
+    
+    for(int i=0;i<n;i=mp[nums[i]]+1){
+        int x=nums[i];
+        if(nums[i]>0) break;
+        for(int j=i+1;j<n;j=mp[nums[j]]+1){
+            if((mp.find(-x -nums[j])!= mp.end()) and mp[-x-nums[j]]>j){                         vector<int> t{x,nums[j],-x-nums[j]};
+                ans.push_back(t);                    
+            }                 
+        }
+    }        
+    return ans;
+}
