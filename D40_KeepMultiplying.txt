@@ -1,0 +1,45 @@
+Leetcode Ques Link: https://leetcode.com/problems/keep-multiplying-found-values-by-two/
+
+//Approach 1
+bool binSearch(vector<int> v,int st,int en,int target){
+    int mid;
+    while(st<=en){
+        mid=st+(en-st)/2;
+        if(v[mid] == target) return true;
+        else if(v[mid] < target) st=mid+1;
+        else en=mid-1;
+    }
+    return false;
+}
+int findFinalValue(vector<int>& nums, int original) {
+    sort(nums.begin(),nums.end());
+    int n=nums.size();       
+    while(binSearch(nums,0,n-1,original))
+        original*=2;        
+    return original;
+}
+
+//Approach 2(Reducing the search space)
+int binSearch(vector<int> v,int st,int en,int target){
+    int mid;
+    while(st<=en){
+        mid=st+(en-st)/2;
+        if(v[mid] == target) return mid;
+        else if(v[mid] < target) st=mid+1;
+        else en=mid-1;
+    }
+    return -1;
+}
+int findFinalValue(vector<int>& nums, int original) {
+    sort(nums.begin(),nums.end());
+    int n=nums.size(),st=0,en=n-1;       
+    while(true){
+        int idx=binSearch(nums,st,en,original);
+        if(idx!=-1){
+            original*=2;
+            st=idx+1;
+        }
+        else break;
+    }
+    return original;
+}
