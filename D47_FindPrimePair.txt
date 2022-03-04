@@ -1,0 +1,32 @@
+Gfg Ques Link: https://practice.geeksforgeeks.org/problems/return-two-prime-numbers2509/1
+
+class Solution{
+public:
+    bool isPrime[10001];
+    const int n=10000;
+    void sieve(){
+        for(int i=0;i<=n;i++)
+            isPrime[i]=true;
+        isPrime[0]=false;
+        isPrime[1]=false;
+    
+        for(int i=2;i*i<=n;i++){
+            if(isPrime[i]){
+                for(int j=i*i;j<=n;j+=i)
+                    isPrime[j]=false;
+            }
+        }
+    }
+    vector<int> primeDivision(int N){
+        sieve();
+        vector<int> ans;
+        for(int i=2;i<N;i++){
+            if(isPrime[i] and isPrime[N-i]){
+                ans.push_back(i);
+                ans.push_back(N-i);
+                break;
+            }
+        }
+        return ans;
+    }
+};
