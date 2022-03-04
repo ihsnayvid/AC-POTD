@@ -1,3 +1,0 @@
-comparing r and r
-comparing a and a
-Palindrome
