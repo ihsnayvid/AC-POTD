@@ -1,0 +1,55 @@
+Leetcode Ques Link: https://leetcode.com/problems/sort-list/
+
+//Using Merge Sort
+
+//Function to split the Linked List into two halves
+void splitHalf(ListNode* start, ListNode** firsthalf, ListNode** secondhalf){
+    ListNode* fast;
+    ListNode* slow;
+    slow=start;
+    fast=start->next;
+    
+    while(fast and fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    *firsthalf=start;
+    *secondhalf=slow->next;
+    slow->next=NULL;
+}
+
+//Recursive function to merge two sorted lists
+ListNode* merge(ListNode* a,ListNode* b){
+    ListNode* temp=NULL;
+    if(a == NULL) return b;
+    else if(b == NULL) return a;
+    
+    if(a->val <= b->val){
+        temp=a;
+        temp->next = merge(a->next,b);
+    }
+    else{
+        temp=b;
+        temp->next = merge(a,b->next);
+    }
+    return temp;
+}
+
+//Recursive merge sort function
+void mergeSort(ListNode** first){
+    ListNode* head = *first;
+    ListNode* a;
+    ListNode* b;
+    
+    if(head == NULL or head->next == NULL) return;
+    
+    splitHalf(head,&a,&b);
+    mergeSort(&a);
+    mergeSort(&b);
+    
+    *first=merge(a,b);
+}
+ListNode* sortList(ListNode* head) {
+    mergeSort(&head);
+    return head;
+}
