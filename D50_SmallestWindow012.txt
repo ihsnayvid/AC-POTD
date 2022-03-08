@@ -1,0 +1,17 @@
+Gfg Ques Link: https://practice.geeksforgeeks.org/problems/d6e88f06b273a60ae83992314ac514f71841a27d/1?fbclid=IwAR0g2zQuqt5Wq1E37WfF3sbBtdwb1vXHjPYP04xy9Nk_RUCPrsfdWMpB7Eo#
+
+int smallestSubstring(string S) {
+    if(S.length() < 3) return -1;   //edge case
+    int zero=-1,one=-1,two=-1,ans=INT_MAX,i=0;
+    while(i<S.length()){
+        if(S[i] == '0') zero=i;
+        else if(S[i] == '1') one=i;
+        else if(S[i] == '2') two=i;
+        
+        if(zero != -1 and one != -1 and two != -1)
+            ans = min(ans, max({zero,one,two}) - min({zero,one,two}) + 1);
+        i++;
+    }
+    if(ans == INT_MAX) return -1;   
+    return ans;
+}
