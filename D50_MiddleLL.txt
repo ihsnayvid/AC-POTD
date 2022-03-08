@@ -1,0 +1,12 @@
+Gfg Ques Link: https://practice.geeksforgeeks.org/problems/finding-middle-element-in-a-linked-list/1
+
+int getMiddle(Node *head)
+{
+    Node *slow=head;
+    Node *fast=head;
+    while(fast and fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow->data;
+}
