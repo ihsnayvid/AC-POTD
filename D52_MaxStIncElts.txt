@@ -1,0 +1,15 @@
+//Gfg Ques Link: https://practice.geeksforgeeks.org/problems/roof-top-1587115621/1#
+//Function to find maximum number of consecutive steps 
+//to gain an increase in altitude with each step.
+int maxStep(int A[], int N)
+{
+    int mx=0,curr=0;
+    for(int i=0;i<N-1;i++){
+        if(A[i+1] > A[i]){
+            curr++;
+            if(curr > mx) mx=curr;
+        }
+        else curr=0;
+    }
+    return mx;
+}
