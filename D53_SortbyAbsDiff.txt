@@ -1,0 +1,26 @@
+//Gfg Ques Link: https://practice.geeksforgeeks.org/problems/sort-by-absolute-difference-1587115621/1#
+
+//using vector of pairs
+void sortABS(int A[],int N, int k)
+{
+    vector<pair<int,int>> vp;
+    for(int i=0;i<N;i++)
+        vp.push_back({abs(A[i]-k),i});
+    
+    sort(vp.begin(),vp.end());
+    int temp[N];
+    for(int i=0;i<N;i++)
+        temp[i]=A[vp[i].second];
+    
+    for(int i=0;i<N;i++)
+        A[i]=temp[i];
+}
+
+
+//using stl stable sort - lambda expr
+void sortABS(int A[],int N, int k)
+{
+    stable_sort(A,A+N,[k](int a,int b){
+        return (abs(a-k) < abs(b-k));
+    });
+}
