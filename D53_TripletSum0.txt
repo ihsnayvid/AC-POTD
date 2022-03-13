@@ -1,0 +1,18 @@
+//Gfg Ques Link: https://practice.geeksforgeeks.org/problems/find-triplets-with-zero-sum/1#
+
+//using two pointers
+//Function to find triplets with zero sum.
+bool findTriplets(int arr[], int n)
+{ 
+    sort(arr,arr+n);
+    for(int i=0;i<n-2;i++){
+        int sum=-arr[i];
+        int st=i+1,en=n-1;
+        while(st<en){
+            if((arr[st] + arr[en]) > sum) en--;
+            else if((arr[st] + arr[en]) < sum) st++;
+            else return true;
+        }
+    }
+    return false;
+}
